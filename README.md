@@ -1,45 +1,57 @@
-# Execução do programa
+# Etapa 1 - Programa 
 
-Antes de executar o programa, o nome do arquivo de entrada deve ser inserido no lugar de "insira_aqui_o_arquivo", linha 6.
-
-Isso pode ser feito de duas formas:
-* abre o "test.txt" que esteja no diretório atual
-```
-f = open("test.txt")
-```
-
-* abre o "test.txt" especificamento o diretório
-```
-f = open("C:/Python33/test.txt")
-```
-Para executar: 
-```
-python parentheses-challenge.py
-```
-
-# Algoritmo
-
-A função recebe a expressão e percorre todos os caracteres da string, caso ele encontre ```'('``` ```var``` é incrementada, caso encontre ```')'``` ```var``` é decrementada. 
-Uma expressão válida, é uma expressão onde ```var``` seja igual a 0, ou seja, cada ```'('``` anula um ```')'```, porém:
-
->se ```var < 0``` significa que algum parênteses foi fechado sem ser aberto e o programa retorna 'incorrect'.
-
->se ```var > 0``` significa que algum parêtenses foi aberto sem ser fechado e o programa retorna 'incorrect'.
+O programa que printa a variável de ambiente do SO a cada 20s foi escrito em Python:
 
 ```python
-def isExpressionValid(exp):
-    var = 0
-    for c in exp:
-        if var < 0:
-            return 'incorrect'
-        elif c == '(':
-            var += 1
-        elif c == ')':
-            var -= 1
-    if var == 0:
-        return 'correct'
-    else:
-        return 'incorrect'
+import os
+import time
+
+timeout = 20.0
+ 
+db_usr = os.getenv('USERNAME')
+ 
+db_pass = os.getenv('PASSWORD')
+
+def twenty_seconds_log():
+    print(db_pass)    
+
+while True:
+    twenty_seconds_log()
+    time.sleep(timeout)
+```
+
+As variáveis [USERNAME, PASSWORD] serão incluídas nos recursos dos deployments como Secrets.
+
+# Etapa 2 - Criação do container e updload da imagem Docker
+
+Criei o container utilizando o Docker, o arquivo Dockfile ficou desse jeito:
+
+```Dockfile
+FROM python:latest
+
+COPY main.py /
+
+CMD ["python","-u","main.py"]
+``` 
+Utilizei também o Docker Hub como container registry
+
+
+```python
+import os
+import time
+
+timeout = 20.0
+ 
+db_usr = os.getenv('USERNAME')
+ 
+db_pass = os.getenv('PASSWORD')
+
+def twenty_seconds_log():
+    print(db_pass)    
+
+while True:
+    twenty_seconds_log()
+    time.sleep(timeout)
 ```
 
 # Saída
