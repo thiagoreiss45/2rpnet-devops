@@ -24,7 +24,7 @@ As variáveis [USERNAME, PASSWORD] serão incluídas nos recursos dos deployment
 
 # Etapa 2 - Criação do container e upload da imagem Docker
 
-Criei o container utilizando o Docker, o arquivo Dockfile ficou desse jeito:
+Criei o container utilizando o Docker, o arquivo Dockerfile ficou desse jeito:
 
 ```Dockfile
 FROM python:latest
